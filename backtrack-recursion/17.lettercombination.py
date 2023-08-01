@@ -1,3 +1,6 @@
+import unittest
+from typing import List
+
 def letterCombinations(digits):
     res=[] #end we want to have a list of strings
     mapping = {
@@ -20,3 +23,25 @@ def letterCombinations(digits):
             backtrack(i+1, path+c)
     backtrack(0,'')
   return res
+
+#Unit test
+class TestLetterCombinations(unittest.TestCase):
+    def test_example_1(self):
+        digits = "23"
+        expected_result = ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+        self.assertCountEqual(letterCombinations(digits), expected_result)
+
+    def test_example_2(self):
+        digits = ""
+        expected_result = []
+        self.assertEqual(letterCombinations(digits), expected_result)
+
+    def test_example_3(self):
+        digits = "2"
+        expected_result = ["a","b","c"]
+        self.assertCountEqual(letterCombinations(digits), expected_result)
+
+
+# run the unit tests
+if __name__ == '__main__':
+    unittest.main()
