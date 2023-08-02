@@ -14,6 +14,16 @@ Once you have clarified these points, you can move on to the solution.
 
 Easy-to-understand Solution Approach:
 You could use Dijkstra's algorithm with a slight modification to keep track of the number of stops made. The traditional Dijkstra's algorithm does not work here because it discards the longer path between two nodes, but in this case, a longer path could have fewer stops and thus could potentially lead to a cheaper price.
+
+Discussing Time and Space Complexity:
+Time Complexity: The time complexity is O(E + N * log(N)), where E is the total number of flights and N is the number of cities. This is due to the fact that we potentially visit all edges and the heap operations take log(N) time.
+Space Complexity: The space complexity is O(N + E) since we need to store the graph and the min-heap in memory.
+Handling Edge Cases and Assumptions:
+If src is the same as dst and k is 0, we can return 0, as no travel is required.
+If the cities are disconnected and there is no path from src to dst, the function will return -1 as required.
+Optimizations and Follow-up:
+Discuss if any other algorithms could be applicable here, such as Bellman-Ford.
+Discuss how this solution can be extended for various other scenarios or constraints.
 """
 import heapq
 def findCheapestPrice(n, flights, src, dst, K):
@@ -29,3 +39,10 @@ def findCheapestPrice(n, flights, src, dst, K):
             for v,w in graph[node]:
                 heapq.heappush(heap,(cost+w,v,stops-1))
     return -1
+n = 3
+flights = [[0,1,100],[1,2,100],[0,2,500]]
+src = 0
+dst = 2
+k = 1
+result = findCheapestPrice(n, flights, src, dst, k)
+print(result)
